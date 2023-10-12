@@ -1,0 +1,40 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Laravel template
+/core/vendor/
+core/node_modules/
+core/npm-debug.log
+core/yarn-error.log
+
+
+core/storage/*.key
+core/storage/db-data/
+core/storage/logs/*
+core/storage/app/public/*
+core/storage/framework/sessions/*
+core/storage/framework/views/*
+core/storage/framework/cache/*
+core/.env
+core/.env.testing
+core/laravel-echo-server.lock
+
+Homestead.yaml
+Homestead.json
+/.vagrant
+.phpunit.result.cache
+
+### VisualStudioCode template
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+# Local History for Visual Studio Code
+.history/
+docker-data
+.idea
+.vscode
+
+core/composer.lock
+.env
+.docker-data

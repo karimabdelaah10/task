@@ -1,0 +1,21 @@
+<?php
+return [
+    'Countries' => 'Countries',
+    'Select Label' => 'Select :label',
+    'Save' => 'Save',
+    'Update' => 'Update',
+    'something_went_wrong_message' => 'Something went wrong',
+    'something_went_wrong_title' => 'Error',
+    'success_message_title' => 'Success',
+    'Yes' => 'Yes',
+    'No' => 'No',
+    'Unauthorized action Please Use Authorized Token' =>'Unauthorized action Please Use Authorized Token',
+    'Activate Account' => 'Activate Account',
+    'Thanks for registration' => 'Thanks for registration',
+    'This account is not confirmed' => 'This account is not confirmed',
+    'User Confirmed in successfully' => 'User Confirmed in successfully',
+    'This account is banned' => 'This account is banned',
+    'Trying to login with invalid password' => 'Trying to login with invalid password',
+    'Trying to login with not valid user type account' => 'Trying to login with not valid user type account',
+    'There is no account with this email'=>'There is no account with this email',
+];
