@@ -15,7 +15,6 @@ return new class extends Migration {
             $table->string('name');
             $table->string('email')->unique();
             $table->string('mobile_number')->unique();
-            $table->unsignedBigInteger('country_id')->nullable();
             $table->string('type')->default('user');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('otp')->nullable();
@@ -24,8 +23,6 @@ return new class extends Migration {
             $table->string('password');
             $table->string('language')->default('en');
             $table->string('profile_picture')->nullable();
-
-            $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
             $table->rememberToken();
             $table->timestamps();
         });

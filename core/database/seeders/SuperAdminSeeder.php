@@ -18,6 +18,7 @@ class SuperAdminSeeder extends Seeder
             User::query()->create([
                 'name' => 'Super Admin',
                 'email' => $email,
+                'mobile_number' => '01000000000',
                 'type' => UsersEnum::ADMIN,
                 'password' => bcrypt('12345678'),
             ]);

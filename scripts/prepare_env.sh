@@ -16,12 +16,7 @@ else
 
 fi
 
-#npm install -g npm@9.8.1
-#npm i
-#npm run build
 php artisan key:generate
-php artisan storage:link
 php artisan migrate
 php artisan db:seed --class=SuperAdminSeeder
-php artisan jwt:secret
 #/bin/fix_permissions.sh

@@ -19,6 +19,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::group([], function () {
-    require base_path('app/Modules/Country/routes/api.php');
 });
 

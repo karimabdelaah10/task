@@ -16,7 +16,6 @@ services:
     container_name: ${APP_CONTAINER_NAME}
     depends_on:
       - mysql
-      - redis
     networks:
       - ${NETWORK_NAME}
 
