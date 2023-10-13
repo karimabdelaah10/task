@@ -147,16 +147,32 @@ if (!function_exists('formatErrorValidation')) {
         return response()->json(["errors" => $errorsArray], $code);
     }
 }
-if (! function_exists('snake_case')) {
+if (!function_exists('snake_case')) {
     /**
      * Convert a string to snake case.
      *
-     * @param  string  $value
-     * @param  string  $delimiter
+     * @param string $value
+     * @param string $delimiter
      * @return string
      */
     function snake_case($value, $delimiter = '_')
     {
         return Str::snake($value, $delimiter);
+    }
+
+    if (!function_exists('customResponse')) {
+
+        function customResponse(
+            $data = [],
+            $message = "",
+            $code = 200,
+        )
+        {
+            return response()->json([
+                'data' => $data,
+                'message' => $message,
+                'status_code' => (integer)$code
+            ], $code);
+        }
     }
 }

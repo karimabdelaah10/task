@@ -16,30 +16,47 @@ class UserRepository
         }
     }
 
-    public function list(
-        $pagination = false,
-        $callback = null,
-        $limit = null,
-    )
+    public function list()
     {
         return $this->model
             ->query()
-            ->when($callback, $callback)
-            ->orderBy('id', 'desc')
-            ->when($pagination, function ($quer) use ($limit) {
-                $quer->when($limit,
-                    function ($q) use ($limit) {
-                        return $q->paginate($limit);
-                    },
-                    function ($q) {
-                        return $q->paginate(env('DEFAULT_PER_PAGE') ?? 40);
-                    });
-            }, function ($que) use ($limit) {
-                $que->when($limit, function ($q) use ($limit) {
-                    $q->take($limit);
+            ->whereHas('transactions', function ($quer) {
+                $quer->when(request()->provider, function ($q) {
+                    $q->where('provider', request()->provider);
+                });
+                $quer->when(request()->statusCode, function ($q) {
+                    $q->where('status_code', request()->statusCode);
+                });
+                $quer->when(request()->currency, function ($q) {
+                    $q->where('currency', request()->currency);
+                });
+                $quer->when(request()->balanceMin, function ($q) {
+                    $q->where('amount', '>=', request()->balanceMin);
+                });
+                $quer->when(request()->balanceMax, function ($q) {
+                    $q->where('amount', '<=', request()->balanceMax);
+                });
+                return $quer;
+            })
+            ->with('transactions', function ($quer) {
+                $quer->when(request()->provider, function ($q) {
+                    $q->where('provider', request()->provider);
+                });
+                $quer->when(request()->statusCode, function ($q) {
+                    $q->where('status_code', request()->statusCode);
+                });
+                $quer->when(request()->currency, function ($q) {
+                    $q->where('currency', request()->currency);
+                });
+                $quer->when(request()->balanceMin, function ($q) {
+                    $q->where('amount', '>=', request()->balanceMin);
+                });
+                $quer->when(request()->balanceMax, function ($q) {
+                    $q->where('amount', '<=', request()->balanceMax);
                 });
             })
-            ->get();
+            ->orderBy('id', 'desc')
+            ->paginate(40);
     }
 
     public function firstOrCreate($email)

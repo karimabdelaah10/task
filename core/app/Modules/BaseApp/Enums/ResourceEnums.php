@@ -4,6 +4,6 @@ namespace App\Modules\BaseApp\Enums;
 
 enum ResourceEnums
 {
-    public const COUNTRY = 'country',
+    public const TRANSACTION = 'transaction',
         USER='user';
 }
