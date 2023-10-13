@@ -14,7 +14,7 @@ class UsersController extends BaseApiController
 
     public function index()
     {
-        $users = (new UserRepository())->list();
+        $users = (new UserRepository())->list(request()->all());
         //in case you want to see transformer response
         if (request()->returnTransformer) {
             return $this->transformDataModInclude(

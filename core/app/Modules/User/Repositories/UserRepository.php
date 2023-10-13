@@ -16,44 +16,45 @@ class UserRepository
         }
     }
 
-    public function list()
+    public function list($queryParams = [])
     {
         return $this->model
             ->query()
-            ->whereHas('transactions', function ($quer) {
-                $quer->when(request()->provider, function ($q) {
-                    $q->where('provider', request()->provider);
+            ->whereHas('transactions', function ($quer) use ($queryParams) {
+                $quer->when(!empty($queryParams['provider']), function ($q) use ($queryParams) {
+                    $q->where('provider', $queryParams['provider']);
                 });
-                $quer->when(request()->statusCode, function ($q) {
-                    $q->where('status_code', request()->statusCode);
+                $quer->when(!empty($queryParams['statusCode']), function ($q) use ($queryParams) {
+                    $q->where('status_code', $queryParams['statusCode']);
                 });
-                $quer->when(request()->currency, function ($q) {
-                    $q->where('currency', request()->currency);
+                $quer->when(!empty($queryParams['currency']), function ($q) use ($queryParams) {
+                    $q->where('currency', $queryParams['currency']);
                 });
-                $quer->when(request()->balanceMin, function ($q) {
-                    $q->where('amount', '>=', request()->balanceMin);
+                $quer->when(!empty($queryParams['balanceMin']), function ($q) use ($queryParams) {
+                    $q->where('amount', '>=', $queryParams['balanceMin']);
                 });
-                $quer->when(request()->balanceMax, function ($q) {
-                    $q->where('amount', '<=', request()->balanceMax);
+                $quer->when(!empty($queryParams['balanceMax']), function ($q) use ($queryParams) {
+                    $q->where('amount', '<=', $queryParams['balanceMax']);
                 });
                 return $quer;
             })
-            ->with('transactions', function ($quer) {
-                $quer->when(request()->provider, function ($q) {
-                    $q->where('provider', request()->provider);
+            ->with('transactions', function ($quer) use ($queryParams) {
+                $quer->when(!empty($queryParams['provider']), function ($q) use ($queryParams) {
+                    $q->where('provider', $queryParams['provider']);
                 });
-                $quer->when(request()->statusCode, function ($q) {
-                    $q->where('status_code', request()->statusCode);
+                $quer->when(!empty($queryParams['statusCode']), function ($q) use ($queryParams) {
+                    $q->where('status_code', $queryParams['statusCode']);
                 });
-                $quer->when(request()->currency, function ($q) {
-                    $q->where('currency', request()->currency);
+                $quer->when(!empty($queryParams['currency']), function ($q) use ($queryParams) {
+                    $q->where('currency', $queryParams['currency']);
                 });
-                $quer->when(request()->balanceMin, function ($q) {
-                    $q->where('amount', '>=', request()->balanceMin);
+                $quer->when(!empty($queryParams['balanceMin']), function ($q) use ($queryParams) {
+                    $q->where('amount', '>=', $queryParams['balanceMin']);
                 });
-                $quer->when(request()->balanceMax, function ($q) {
-                    $q->where('amount', '<=', request()->balanceMax);
+                $quer->when(!empty($queryParams['balanceMax']), function ($q) use ($queryParams) {
+                    $q->where('amount', '<=', $queryParams['balanceMax']);
                 });
+                return $quer;
             })
             ->orderBy('id', 'desc')
             ->paginate(40);

@@ -19,7 +19,7 @@ class SyncDataFromProviderJob implements ShouldQueue
      */
     public function handle(): void
     {
-        $providers = FactoryEnum::getProvidersPerfixes();
+        $providers = FactoryEnum::getProvidersPrefixes();
         foreach ($providers as $provider) {
             try {
                 $providerDataSourcePath = database_path('seeders/data/' . $provider . '.json');
