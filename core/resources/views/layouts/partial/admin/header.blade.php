@@ -110,11 +110,11 @@
                    aria-haspopup="true"
                    aria-expanded="false">
                     <div class="user-nav d-sm-flex d-none">
-                        <span class="user-name fw-bolder">{{auth()->user()->name}}</span>
+                        <span class="user-name fw-bolder"></span>
                     </div>
                     <span class="avatar">
                         <img class="round"
-                             src="{{image(auth()->user()->profile_picture ,'small')}}"
+                             src="{{image('' ,'small')}}"
                              alt="avatar"
                              height="40"
                              width="40">
@@ -123,17 +123,6 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-end"
                      aria-labelledby="dropdown-user">
-                    <a class="dropdown-item"
-                       href="{{route('profile.getEdit')}}">
-                        <i class="me-50" data-feather="user"></i> Profile</a>
-                    <form id="logout-form" action="{{route('logout')}}" method="POST">
-                        @csrf
-                    </form>
-                    <a class="dropdown-item" onclick="$('#logout-form').submit()">
-                        <i class="me-50" data-feather="power">
-                        </i>
-                        Logout
-                    </a>
                 </div>
             </li>
         </ul>

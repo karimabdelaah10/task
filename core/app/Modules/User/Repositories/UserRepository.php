@@ -16,40 +16,42 @@ class UserRepository
         }
     }
 
-    public function findOrFail($id): ?User
+    public function list(
+        $pagination = false,
+        $callback = null,
+        $limit = null,
+    )
     {
-        return $this->model->findOrFail($id);
+        return $this->model
+            ->query()
+            ->when($callback, $callback)
+            ->orderBy('id', 'desc')
+            ->when($pagination, function ($quer) use ($limit) {
+                $quer->when($limit,
+                    function ($q) use ($limit) {
+                        return $q->paginate($limit);
+                    },
+                    function ($q) {
+                        return $q->paginate(env('DEFAULT_PER_PAGE') ?? 40);
+                    });
+            }, function ($que) use ($limit) {
+                $que->when($limit, function ($q) use ($limit) {
+                    $q->take($limit);
+                });
+            })
+            ->get();
     }
 
-    public function update($data, $id)
+    public function firstOrCreate($email)
     {
-        return $this->model->findOrFail($id)->update($data);
-    }
+        return $this->model->query()->firstOrCreate(
+            ['email' => $email],
+            [
+                'name' => $email,
+                'email' => $email,
+            ]
 
-    public function findByEmail($mail)
-    {
-        return $this->model->where('email', $mail)->first();
-    }
-
-    public function findByMobileNumber($mobileNumber)
-    {
-        return $this->model->where('mobile_number', $mobileNumber)->first();
-    }
-
-    public function create($data)
-    {
-        return $this->model->create($data);
-    }
-
-    public function findUserByOtp($otp)
-    {
-        return $this->model->where('otp', $otp)->first();
-    }
-
-    public function findByProvider(string $provider, string $providerId)
-    {
-        return $this->model::query()->
-        where("{$provider}_id", $providerId)
-            ->first();
+        );
     }
 }
+
