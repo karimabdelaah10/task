@@ -2,9 +2,9 @@
 
 
 ## To Run the project
-- copy the `.env.example` file
+- run the following commands
 ```bash
-cp .env.example .env
+./scripts/create_env_file.sh
 ```
 - edit the `.env` file and set your environment variables
 - run the app
