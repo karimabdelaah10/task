@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use App\Modules\BaseApp\Middleware\Locale;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
@@ -28,8 +27,8 @@ class RouteServiceProvider extends ServiceProvider
         $this->configureRateLimiting();
 
         $this->routes(function () {
-            Route::middleware(['api', Locale::class])
-                ->prefix('api/v1/{lang}')
+            Route::middleware(['api'])
+                ->prefix('api/v1/')
                 ->group(base_path('routes/api.php'));
 
             Route::middleware('web')
