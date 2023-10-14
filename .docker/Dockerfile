@@ -33,10 +33,8 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 COPY scripts/entrypoint.sh /tmp/entrypoint.sh
 RUN true
 COPY scripts/prepare_env.sh /bin/prepare_env.sh
-COPY scripts/fix_permissions.sh /bin/fix_permissions.sh
 
 RUN chmod +x /bin/prepare_env.sh
-RUN chmod +x /bin/fix_permissions.sh
 
 RUN chmod 777 -R /tmp && chmod o+t -R /tmp
 ############################# Supervisor Config #############################
