@@ -239,14 +239,6 @@ class UsersControllerTest extends TestCase
         $url = "/api/v1/users?provider=DataProviderX&statusCode=authorised&currency=USD&balanceMin=10&balanceMax=100";
         $response = $this->getJson($url);
         $response->assertOk();
-
     }
-/**
-
-
-  *  HMVC Design Pattern
- *
- **/
-
 
 }
