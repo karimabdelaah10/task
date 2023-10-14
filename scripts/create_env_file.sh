@@ -5,7 +5,7 @@ echo "in create env file.sh"
 
 cp .env.example .env
 # Get the current user's UID
-USER_UID=$(id -u)
+USER_ID=$(id -u)
 GROUP_ID=$(id -g)
-echo "USER_UID=$USER_UID" >> .env
+echo "USER_ID=$USER_ID" >> .env
 echo "GROUP_ID=$GROUP_ID" >> .env
