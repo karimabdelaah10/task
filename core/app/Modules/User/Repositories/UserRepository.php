@@ -25,7 +25,7 @@ class UserRepository
                     $q->where('provider', $queryParams['provider']);
                 });
                 $quer->when(!empty($queryParams['statusCode']), function ($q) use ($queryParams) {
-                    $q->where('status_code', $queryParams['statusCode']);
+                    $q->where('status', $queryParams['statusCode']);
                 });
                 $quer->when(!empty($queryParams['currency']), function ($q) use ($queryParams) {
                     $q->where('currency', $queryParams['currency']);
@@ -43,7 +43,7 @@ class UserRepository
                     $q->where('provider', $queryParams['provider']);
                 });
                 $quer->when(!empty($queryParams['statusCode']), function ($q) use ($queryParams) {
-                    $q->where('status_code', $queryParams['statusCode']);
+                    $q->where('status', $queryParams['statusCode']);
                 });
                 $quer->when(!empty($queryParams['currency']), function ($q) use ($queryParams) {
                     $q->where('currency', $queryParams['currency']);

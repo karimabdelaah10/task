@@ -12,7 +12,7 @@ class UsersController extends BaseApiController
 {
 
 
-    public function index()
+    public function getUsers()
     {
         $users = (new UserRepository())->list(request()->all());
         //in case you want to see transformer response
@@ -26,11 +26,6 @@ class UsersController extends BaseApiController
             );
         }
         return customResponse(new UserCollection($users), "User Data");
-
-    }
-
-    public function ReloadContent()
-    {
 
     }
 }

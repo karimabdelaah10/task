@@ -2,13 +2,12 @@
 
 namespace App\Modules\Transaction\Jobs;
 
-use App\Modules\Transaction\Enum\FactoryEnum;
+use App\Modules\Transaction\UseCase\TransactionUseCase;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\File;
 
 class SyncDataFromProviderJob implements ShouldQueue
 {
@@ -19,20 +18,6 @@ class SyncDataFromProviderJob implements ShouldQueue
      */
     public function handle(): void
     {
-        $providers = FactoryEnum::getProvidersPrefixes();
-        foreach ($providers as $provider) {
-            try {
-                $providerDataSourcePath = database_path('seeders/data/' . $provider . '.json');
-                if (!File::exists($providerDataSourcePath)) {
-                    continue;
-                }
-                $jsonContent = json_decode(file_get_contents($providerDataSourcePath));
-                $providerHandlerClass = FactoryEnum::getProviderHandlerClass($provider);
-                app($providerHandlerClass)->prepareObjectBeforeCreate(providerData: $jsonContent);
-            } catch (\Throwable $throwable) {
-                continue;
-            }
-
-        }
+        (new TransactionUseCase())->syncDataFromDataProvider();
     }
 }
