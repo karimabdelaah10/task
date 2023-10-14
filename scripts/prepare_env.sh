@@ -19,4 +19,3 @@ fi
 php artisan key:generate
 php artisan migrate
 php artisan db:seed
-#/bin/fix_permissions.sh
