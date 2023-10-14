@@ -241,7 +241,12 @@ class UsersControllerTest extends TestCase
         $response->assertOk();
 
     }
+/**
 
+
+  *  HMVC Design Pattern
+ *
+ **/
 
 
 }
