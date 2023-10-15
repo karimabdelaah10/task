@@ -26,6 +26,21 @@ docker exec -it task-app bash
 - access your application from browser using [this link](http://127.0.0.1:3515)
 ## To Access Users List Api 
 ```bash
+curl --location 'http://127.0.0.1:3515/api/v1/users'
+```
+    - provider: DataProviderX or DataProviderY
+    - statusCode: authorised or declined or refunded
+    - currency: EUR or USD or AED
+    - balanceMin: 10
+    - balanceMax: 100
+```bash
+curl --location 'http://127.0.0.1:3515/api/v1/users?provider=DataProviderX&statusCode=authorised&currency=USD&balanceMin=10&balanceMax=100'
+``` 
+**Note:** 
+    
+- you can use any combination of the parameters above
+- you can use returnTransformer=true to return the data with the transformer
+```bash
 curl --location 'http://127.0.0.1:3515/api/v1/users?returnTransformer=true&provider=DataProviderX&statusCode=authorised&currency=USD&balanceMin=10&balanceMax=100'
 ```
 ## To Sync Data From Provider 
